@@ -1,0 +1,48 @@
+#ratings-reviews{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+}
+#header {
+  display: flex;
+  font-weight: normal;
+  justify-content: center;
+  margin-top: 0px;
+  height: 23.75px;
+  width: 980px
+}
+
+#write-a-review{
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  height: 23.75px;
+  width: 800px
+}
+
+#btn-write-a-review{
+  padding: 0;
+  border: none;
+  background: none;
+  color: blue;
+  /* justify-content: space-between; */
+}
+#btn-write-a-review:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#histogram-box {
+  display: table;
+  height: 13.984px;
+  width: 277.266px;
+  border: 1px;
+  border-color: black;
+}
+
+#histogram {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
