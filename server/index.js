@@ -10,7 +10,8 @@ app.use(parser.json())
 app.use(parser.urlencoded({extended:true}))
 
 const getRatings = (req, res) => {
-    Product.findOne()
+    let rand = Math.floor(Math.random() * 100);
+    Product.findOne().skip(rand)
       .then(results => {
           res.status(200).send(results)
       })

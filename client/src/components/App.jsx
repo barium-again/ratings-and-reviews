@@ -1,11 +1,16 @@
 import React from 'react';
 import styles from './app.css';
 import axios from 'axios'
+import Ratings from 'react-ratings-declarative';
+import QuestionMark from './QuestionMark.jsx'
+import FilterBar from './FilterBar.jsx'
+// import Stars from './Stars.jsx'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      fiveStarReviewsPercentage: 0
 
 
     }
@@ -17,42 +22,146 @@ class App extends React.Component {
       .then(results => {
         let reviewNum = results.data.fiveStarReviews.length + results.data.fourStarReviews.length + results.data.threeStarReviews.length 
         + results.data.twoStarReviews.length + results.data.oneStarReviews.length
-        console.log(reviewNum);
-        this.setState({reviewNum: reviewNum})
+        // console.log(reviewNum);
+        let fiveStarCount = results.data.fiveStarReviews.length;
+        let fourStarCount = results.data.fourStarReviews.length;
+        let threeStarCount = results.data.threeStarReviews.length;
+        let twoStarCount = results.data.twoStarReviews.length;
+        let oneStarCount = results.data.oneStarReviews.length;
+
+        let fiveStarReviewsPercentage = results.data.fiveStarReviews.length/ reviewNum * 100;
+        let fourStarReviewsPercentage = results.data.fourStarReviews.length/ reviewNum * 100;
+        let threeStarReviewsPercentage = results.data.threeStarReviews.length/ reviewNum * 100;
+        let twoStarReviewsPercentage = results.data.twoStarReviews.length/ reviewNum * 100;
+        let oneStarReviewsPercentage = results.data.oneStarReviews.length/ reviewNum * 100;
+        // console.log(fiveStarReviewsPercentage);
+
+        let starAverage = (fiveStarCount*5 + fourStarCount*4 + threeStarCount*3 + twoStarCount*2 + oneStarCount)/reviewNum;
+        starAverage = parseFloat(starAverage.toFixed(1));
+
+        
+        this.setState({reviewNum, fiveStarReviewsPercentage, fourStarReviewsPercentage, threeStarReviewsPercentage,
+          twoStarReviewsPercentage, oneStarReviewsPercentage, fiveStarCount, fourStarCount, threeStarCount,
+          twoStarCount, oneStarCount, starAverage})
       })
 
   }
 
   render() {
     return (
+      <div id='main'>
         <div id="ratings-reviews">
           <h2 id="header">Ratings & Reviews</h2>
-          <div id="write-a-review">
-            <span>{this.state.reviewNum} reviews</span>
-            <button id="btn-write-a-review" type="button" >Write a review</button>
-          </div>
-          <div id="charts">
-            <div id="histogram-container">
-              <table id="histogram">
-                <tr>
-                  <td id="histogram-label">5 stars</td>
-                  <td>
-                    <div id="histogram-box">
-                      <div id="histogram-box-percentage"></div>
+          <div id="write-review-and-charts">
+            <div id="write-a-review">
+              <span>{this.state.reviewNum} reviews</span>
+              <button id="btn-write-a-review" type="button" >Write a review</button>
+            </div>
+            <div id="charts">
+              <div id="histogram-container">
+                <table id="histogram">
+                  <tbody>
+                    <tr>
+                      <td id="histogram-box-td-left">5 stars</td>
+                      <td id="histogram-box-td">
+                        <div id="histogram-box">
+                          <div id="histogram-box-percentage" style={{width:this.state.fiveStarReviewsPercentage+"%"}}></div>
+                        </div>
+                      </td>
+                      <td id="histogram-box-td-right">{this.state.fiveStarCount}</td>
+                    </tr>
+                    <tr>
+                      <td id="histogram-box-td-left">4 stars</td>
+                      <td id="histogram-box-td">
+                        <div id="histogram-box">
+                          <div id="histogram-box-percentage" style={{width:this.state.fourStarReviewsPercentage+"%"}}></div>
+                        </div>
+                      </td>
+                      <td id="histogram-box-td-right">{this.state.fourStarCount}</td>
+                    </tr><tr>
+                      <td id="histogram-box-td-left">3 stars</td>
+                      <td id="histogram-box-td">
+                        <div id="histogram-box">
+                          <div id="histogram-box-percentage" style={{width:this.state.threeStarReviewsPercentage+"%"}}></div>
+                        </div>
+                      </td>
+                      <td id="histogram-box-td-right">{this.state.threeStarCount}</td>
+                    </tr><tr>
+                      <td id="histogram-box-td-left">2 stars</td>
+                      <td id="histogram-box-td">
+                        <div id="histogram-box">
+                          <div id="histogram-box-percentage" style={{width:this.state.twoStarReviewsPercentage+"%"}}></div>
+                        </div>
+                      </td>
+                      <td id="histogram-box-td-right">{this.state.twoStarCount}</td>
+                    </tr>
+                    <tr>
+                      <td id="histogram-box-td-left">1 stars</td>
+                      <td id="histogram-box-td">
+                        <div id="histogram-box">
+                          <div id="histogram-box-percentage" style={{width:this.state.oneStarReviewsPercentage+"%"}}></div>
+                        </div>
+                      </td>
+                      <td id="histogram-box-td-right">{this.state.oneStarCount}</td>
+                    </tr>
+                  </tbody>
+                  
 
+                </table>
+
+              </div>
+              <div id="big-stars-container">
+                <div id="medium-stars-container">
+                  <div id="stars-container">
+
+                    <Ratings
+                      rating={this.state.starAverage}
+                      widgetRatedColors="black"
+                      widgetSpacings="0px"
+                    >
+                      <Ratings.Widget
+                        widgetDimension="20px"
+                        svgIconViewBox="0 0 32 32"
+                        svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
+                      />
+                      <Ratings.Widget
+                        widgetDimension="20px"
+                        svgIconViewBox="0 0 32 32"
+                        svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
+                      />
+                      <Ratings.Widget
+                        widgetDimension="20px"
+                        svgIconViewBox="0 0 32 32"
+                        svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
+                      />
+                      <Ratings.Widget
+                        widgetDimension="20px"
+                        svgIconViewBox="0 0 32 32"
+                        svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
+                      />
+                      <Ratings.Widget
+                        widgetDimension="20px"
+                        svgIconViewBox="0 0 32 32"
+                        svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
+                      />
+
+                    </Ratings> <br/>
+                    <div id="star-average">
+                      {this.state.starAverage} / 5 stars
                     </div>
-                  </td>
-
-                </tr>
-                
-
-              </table>
+                  
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
+          <FilterBar />
         </div>
+      </div>
     )
   }
 }
 
 export default App;
+
