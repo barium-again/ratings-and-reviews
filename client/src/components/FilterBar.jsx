@@ -16,7 +16,8 @@ class FilterBar extends React.Component {
       toggleG: false,
       toggleI: false,
       toggleK: false,
-      toggleM: false
+      toggleM: false,
+      toggle0: false
 
     }
     this.handleClick = this.handleClick.bind(this)
@@ -56,6 +57,11 @@ class FilterBar extends React.Component {
     if(this.state.toggleM){
       if(!this.nodeM.contains(e.target) && !this.nodeN.contains(e.target)){
         this.setState({toggle:false, toggleM: false})
+      }
+    }
+    if(this.state.toggle0){
+      if(!this.node0.contains(e.target)){
+        this.setState({toggle:false, toggle0: false})
       }
     }
 
@@ -114,7 +120,7 @@ class FilterBar extends React.Component {
                     </svg>
                   </button>
                   <div id="filter-bar-divider"></div>
-                  <div id="filter-bar-sort-by-container">
+                  <div id="filter-bar-sort-by-container" ref={node => this.node0 = node} onClick={() => this.setState({toggle: !this.state.toggle, toggle0: !this.state.toggle0})}>
                     <div id="filter-bar-sort-by" onClick={()=> {
                       if(this.state.sortByDisplay === 'none') {
                         this.setState({sortByDisplay: 'block'})
@@ -233,7 +239,7 @@ class FilterBar extends React.Component {
                   </div>
 
                   <div id="filter-menu-item-container">
-                    <div id="filter-item" ref={node => this.nodeC = node} onClick={() => this.setState({toggle: !this.state.toggle, toggleC: !this.setState.toggleC})}>
+                    <div id="filter-item" ref={node => this.nodeC = node} onClick={() => this.setState({toggle: !this.state.toggle, toggleC: !this.state.toggleC})}>
                       Eye Color
                       <svg viewBox="0 0 95 57" id="filter-item-svg">
                         <path d="M47.5 57L95 9.5 85.5 0l-38 38-38-38L0 9.5 47.5 57z"></path>

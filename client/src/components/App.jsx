@@ -12,10 +12,16 @@ class App extends React.Component {
     super(props)
     this.state = {
       fiveStarReviewsPercentage: 0,
-      reviewsArr: 0
-
-
+      reviewsArr: 0,
+      index: 6
     }
+    this.updateIndex = this.updateIndex.bind(this)
+  }
+
+  updateIndex() {
+    console.log('here')
+    let newIndex = this.state.index + 6
+    this.setState({renderedArr: this.state.reviewsArr.slice(0, newIndex), index: newIndex})
   }
 
   componentDidMount() {
@@ -44,10 +50,13 @@ class App extends React.Component {
 
         let reviewsArr = results.data.fiveStarReviews.concat(results.data.fourStarReviews.concat(results.data.threeStarReviews.concat(results.data.twoStarReviews.concat(results.data.oneStarReviews))))
         // console.log(reviewsArr);
+
+        let renderedArr = reviewsArr.slice(0, this.state.index)
+        console.log(renderedArr);
         
           this.setState({reviewNum, fiveStarReviewsPercentage, fourStarReviewsPercentage, threeStarReviewsPercentage,
             twoStarReviewsPercentage, oneStarReviewsPercentage, fiveStarCount, fourStarCount, threeStarCount,
-            twoStarCount, oneStarCount, starAverage, reviewsArr: reviewsArr}, () => this.forceUpdate())
+            twoStarCount, oneStarCount, starAverage, reviewsArr: reviewsArr, renderedArr}, () => this.forceUpdate())
       })
 
   }
@@ -164,7 +173,16 @@ class App extends React.Component {
           </div>
           <FilterBar />
           {/* <Review review={this.state.reviewsArr[0]} /> */}
-          {(this.state.reviewsArr !== 0) ? <Review review={this.state.reviewsArr[0]}/> : <div></div>}
+          {(this.state.reviewsArr !== 0) ? this.state.renderedArr.map( review => (
+          <Review review={review}/>)) : <div></div>}
+          <div id="show-more-reviews">
+            <button id="show-more-reviews-btn" onClick={this.updateIndex}>
+              Show 6 more reviews
+              <svg viewBox="0 0 95 57" id="show-more-reviews-svg" >
+                <path d="M47.5 57L95 9.5 85.5 0l-38 38-38-38L0 9.5 47.5 57z"></path>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     )
