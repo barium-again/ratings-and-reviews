@@ -29,7 +29,7 @@ class Review extends React.Component {
       "12" : "Dec"
     }
     let month = dateObj[this.state.review.date[5] + this.state.review.date[6]]
-    console.log(month);
+    // console.log(month);
     return (
       <div id="review-main-container">
         <div id="review-divider"></div>

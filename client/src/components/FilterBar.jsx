@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './app.css';
-import QuestionMark from './QuestionMark.jsx'
+import QuestionMark from './QuestionMark.jsx';
+import Content from './Content.jsx'
 
 class FilterBar extends React.Component {
   constructor(props) {
@@ -17,10 +18,14 @@ class FilterBar extends React.Component {
       toggleI: false,
       toggleK: false,
       toggleM: false,
-      toggle0: false
+      toggle0: false,
+      filterByObj: {},
+      contentArr : ['Photos', 'Video']
 
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
+    this.addFilter = this.addFilter.bind(this);
+    this.deleteFilter = this.deleteFilter.bind(this);
   }
 
   handleClick(e) {
@@ -64,6 +69,39 @@ class FilterBar extends React.Component {
         this.setState({toggle:false, toggle0: false})
       }
     }
+
+  }
+
+  addFilter(name, filter) {
+    let newFilterObj = this.state.filterByObj;
+    if(newFilterObj[name] === undefined) {
+      newFilterObj[name] = [];
+    }
+    if(newFilterObj[name].includes(filter) === false) {
+      newFilterObj[name].push(filter)
+      console.log(newFilterObj[name])
+
+      this.setState({filterByObj: newFilterObj})
+    }
+  }
+
+  deleteFilter(name, filter) {
+    let newFilterObj = this.state.filterByObj;
+    let arr = this.state.filterByObj[name]
+    let newArr = [];
+
+
+    
+      for(let i = 0 ; i < arr.length; i++) {
+        if(arr[i] !== filter) {
+          newArr.push(arr[i])
+        }
+      }
+    
+      newFilterObj[name] = newArr;
+      console.log(newFilterObj[name])
+      this.setState({filterByObj: newFilterObj})
+  
 
   }
 
@@ -196,7 +234,10 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            <div id="filter-item">
+                            {this.state.contentArr.map(name => (
+                              <Content name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            ))}
+                            {/* <div id="filter-item">
                               <div >
                                 <label id="filter-item-label">
                                   <input id="filter-item-input" type="checkbox" value="Photos"></input>
@@ -223,7 +264,7 @@ class FilterBar extends React.Component {
                                   <div id="filter-item-label">Video</div>
                                 </label>
                               </div>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                         <div id="filter-menu-button-container">

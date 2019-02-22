@@ -19,7 +19,6 @@ class App extends React.Component {
   }
 
   updateIndex() {
-    console.log('here')
     let newIndex = this.state.index + 6
     this.setState({renderedArr: this.state.reviewsArr.slice(0, newIndex), index: newIndex})
   }
@@ -52,7 +51,7 @@ class App extends React.Component {
         // console.log(reviewsArr);
 
         let renderedArr = reviewsArr.slice(0, this.state.index)
-        console.log(renderedArr);
+        // console.log(renderedArr);
         
           this.setState({reviewNum, fiveStarReviewsPercentage, fourStarReviewsPercentage, threeStarReviewsPercentage,
             twoStarReviewsPercentage, oneStarReviewsPercentage, fiveStarCount, fourStarCount, threeStarCount,
@@ -62,7 +61,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("current state status", this.state.reviewsArr)
+    // console.log("current state status", this.state.reviewsArr)
     return (
       <div id='main'>
         <div id="ratings-reviews">
@@ -173,8 +172,8 @@ class App extends React.Component {
           </div>
           <FilterBar />
           {/* <Review review={this.state.reviewsArr[0]} /> */}
-          {(this.state.reviewsArr !== 0) ? this.state.renderedArr.map( review => (
-          <Review review={review}/>)) : <div></div>}
+          {(this.state.reviewsArr !== 0) ? this.state.renderedArr.map( (review, key) => (
+          <Review review={review} key={key}/>)) : <div></div>}
           <div id="show-more-reviews">
             <button id="show-more-reviews-btn" onClick={this.updateIndex}>
               Show 6 more reviews

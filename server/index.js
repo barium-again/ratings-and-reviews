@@ -16,6 +16,13 @@ const getRatings = (req, res) => {
           res.status(200).send(results)
       })
 }
+// const getRatings = (req, res) => {
+//     let rand = Math.floor(Math.random() * 100);
+//     Product.find({id:req.params.id})
+//       .then(results => {
+//           res.status(200).send(results)
+//       })
+// }
 
 app.get('/ratings', getRatings)
 
