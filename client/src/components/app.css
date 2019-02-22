@@ -827,6 +827,216 @@ table {
   margin-top: 20%;
 }
 
+#review-divider {
+    display: block;
+    color: rgba(0, 0, 0, 0.063);
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+#review-container {
+  /* display: flex;
+  flex-flow: row wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between; */
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+#user-info-container {
+  display: block;
+  min-width: 0px;
+  flex: 1 1 0%;
+}
+
+#user-info-button {
+  display: block;
+  width: 100%;
+  font-size: 12px;
+  line-height: 1.25;
+  border: none;
+  background-color: white;
+}
+
+#username-and-icon-container {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-left: -4px;
+  margin-right: -4px;
+  flex-flow: row wrap;
+}
+
+#user-icon-container {
+  flex-basis: auto;
+  padding-left: 4px;
+  padding-right: 4px;
+  display: block;
+  min-width: 0px;
+}
+
+#user-icon {
+  /* background-image: url(https://community.sephora.com/t5/image/serverpage/avatar-name/default-avata…me/sephora/avatar-collection/sephora/avatar-display-size/profile/version/2); */
+  display: block;
+  height: 32px;
+  width: 32px;
+  background-size: cover;
+  border-radius: 99999px;
+  border-width: 1px;
+  border-style: solid;
+  background-position: center center;
+}
+
+#username-container {
+  padding-left: 4px;
+  padding-right: 4px;
+  display: block;
+  min-width: 0px;
+  flex: 1 1 0%;
+}
+
+#username-container2 {
+  display: flex;
+  font-weight: 700;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+#username {
+  overflow-wrap: break-word;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+#user-info-container1 {
+  display: block;
+  margin-top: 12px;
+}
+
+#user-attribute {
+  display: block;
+  margin-top: 4px;
+  text-align: left;
+}
+
+#review-text-and-star-and-button-container {
+  flex-basis: auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0px;
+  width: 648px;
+  /* padding-left: 208px; */
+}
+
+#review-star-and-date {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+#review-star {
+  color: rgb(204, 204, 204);
+  font-size: 16px;
+  width: 5em;
+  height: 1em;
+  position: relative;
+  line-height: 0;
+  text-align: left;
+  overflow: hidden;
+}
+
+#review-date {
+  overflow-wrap: break-word;
+  color: rgb(117, 117, 117);
+  font-size: 12px;
+}
+
+#review-title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+#review-text {
+  display: block;
+  position: relative;
+  overflow-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+#space {
+  display: flex;
+  margin-top: 16px;
+  margin-left: -4px;
+  margin-right: -4px;
+  flex-flow: row wrap;
+}
+
+#recommends {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+#reviews-buttons-container {
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 16px;
+  white-space: nowrap;
+}
+
+#review-button {
+  font-size: 12px;
+  line-height: 1.5;
+  padding-top: 6px;
+  padding-right: 12px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  min-height: 32px;
+  background-color: transparent;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 700;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  min-width: 12.5em;
+  border-style: solid;
+  border-width: 1px;
+  text-decoration: none;
+  outline: 0px;
+  border-radius: 4px;
+  border-color: currentcolor;
+  transition: color 0.2s ease 0s, border-color 0.2s ease 0s;
+}
+
+#review-main-container {
+  width: 100%;
+}
 
 
 

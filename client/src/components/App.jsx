@@ -4,13 +4,15 @@ import axios from 'axios'
 import Ratings from 'react-ratings-declarative';
 import QuestionMark from './QuestionMark.jsx'
 import FilterBar from './FilterBar.jsx'
+import Review from './Review.jsx'
 // import Stars from './Stars.jsx'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      fiveStarReviewsPercentage: 0
+      fiveStarReviewsPercentage: 0,
+      reviewsArr: 0
 
 
     }
@@ -20,6 +22,7 @@ class App extends React.Component {
     axios
       .get('/ratings')
       .then(results => {
+        // console.log(results.data);
         let reviewNum = results.data.fiveStarReviews.length + results.data.fourStarReviews.length + results.data.threeStarReviews.length 
         + results.data.twoStarReviews.length + results.data.oneStarReviews.length
         // console.log(reviewNum);
@@ -39,15 +42,18 @@ class App extends React.Component {
         let starAverage = (fiveStarCount*5 + fourStarCount*4 + threeStarCount*3 + twoStarCount*2 + oneStarCount)/reviewNum;
         starAverage = parseFloat(starAverage.toFixed(1));
 
+        let reviewsArr = results.data.fiveStarReviews.concat(results.data.fourStarReviews.concat(results.data.threeStarReviews.concat(results.data.twoStarReviews.concat(results.data.oneStarReviews))))
+        // console.log(reviewsArr);
         
-        this.setState({reviewNum, fiveStarReviewsPercentage, fourStarReviewsPercentage, threeStarReviewsPercentage,
-          twoStarReviewsPercentage, oneStarReviewsPercentage, fiveStarCount, fourStarCount, threeStarCount,
-          twoStarCount, oneStarCount, starAverage})
+          this.setState({reviewNum, fiveStarReviewsPercentage, fourStarReviewsPercentage, threeStarReviewsPercentage,
+            twoStarReviewsPercentage, oneStarReviewsPercentage, fiveStarCount, fourStarCount, threeStarCount,
+            twoStarCount, oneStarCount, starAverage, reviewsArr: reviewsArr}, () => this.forceUpdate())
       })
 
   }
 
   render() {
+    console.log("current state status", this.state.reviewsArr)
     return (
       <div id='main'>
         <div id="ratings-reviews">
@@ -120,27 +126,27 @@ class App extends React.Component {
                       widgetSpacings="0px"
                     >
                       <Ratings.Widget
-                        widgetDimension="20px"
+                        widgetDimension="24px"
                         svgIconViewBox="0 0 32 32"
                         svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
                       />
                       <Ratings.Widget
-                        widgetDimension="20px"
+                        widgetDimension="24px"
                         svgIconViewBox="0 0 32 32"
                         svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
                       />
                       <Ratings.Widget
-                        widgetDimension="20px"
+                        widgetDimension="24px"
                         svgIconViewBox="0 0 32 32"
                         svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
                       />
                       <Ratings.Widget
-                        widgetDimension="20px"
+                        widgetDimension="24px"
                         svgIconViewBox="0 0 32 32"
                         svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
                       />
                       <Ratings.Widget
-                        widgetDimension="20px"
+                        widgetDimension="24px"
                         svgIconViewBox="0 0 32 32"
                         svgIconPath="M16 0l4.9 10.5L32 12.2l-8 8.2L25.9 32 16 26.5 6.1 32 8 20.4l-8-8.2 11.1-1.7L16 0z"
                       />
@@ -157,6 +163,8 @@ class App extends React.Component {
             </div>
           </div>
           <FilterBar />
+          {/* <Review review={this.state.reviewsArr[0]} /> */}
+          {(this.state.reviewsArr !== 0) ? <Review review={this.state.reviewsArr[0]}/> : <div></div>}
         </div>
       </div>
     )

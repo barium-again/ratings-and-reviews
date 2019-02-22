@@ -233,7 +233,7 @@ class FilterBar extends React.Component {
                   </div>
 
                   <div id="filter-menu-item-container">
-                    <div id="filter-item" ref={node => this.nodeC = node} onClick={() => this.setState({toggle: !this.state.toggle, toggleC: !this.setState.toggleB})}>
+                    <div id="filter-item" ref={node => this.nodeC = node} onClick={() => this.setState({toggle: !this.state.toggle, toggleC: !this.setState.toggleC})}>
                       Eye Color
                       <svg viewBox="0 0 95 57" id="filter-item-svg">
                         <path d="M47.5 57L95 9.5 85.5 0l-38 38-38-38L0 9.5 47.5 57z"></path>
@@ -336,7 +336,7 @@ class FilterBar extends React.Component {
 
 
                   <div id="filter-menu-item-container">
-                    <div id="filter-item" ref={node => this.nodeE = node} onClick={() => this.setState({toggle: !this.state.toggle, toggleE: !this.state.toggleA})}>
+                    <div id="filter-item" ref={node => this.nodeE = node} onClick={() => this.setState({toggle: !this.state.toggle, toggleE: !this.state.toggleE})}>
                       Hair Color
                       <svg viewBox="0 0 95 57" id="filter-item-svg">
                         <path d="M47.5 57L95 9.5 85.5 0l-38 38-38-38L0 9.5 47.5 57z"></path>
