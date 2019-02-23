@@ -31,7 +31,7 @@ class SkinConcerns extends React.Component {
           <label id="filter-item-label">
             <input id="filter-item-input" type="checkbox" value={"" + this.state.filterName + ""}></input>
             <div id="filter-item-checkbox" onClick={this.handleClick}>
-              <svg viewBox="0 0 32 32" id={(this.state.filterName === 'Aging' || this.state.filterName === 'Calluses' || this.state.filterName === 'Cellulite' || this.state.filterName === 'Cuticles' || this.state.filterName === 'Dullness' || this.state.filterName === 'Redness') ? "filter-item-checkbox-svg2" : (this.state.filterName === "Blackheads" || this.state.filterName === 'DarkCircles' || this.state.filterName === 'Sensitivity' || this.state.filterName === 'StretchMarks' || this.state.filterName === 'SunDamage') ? "filter-item-checkbox-svg3" : "filter-item-checkbox-svg"}  style={{display: this.state.display}}>
+              <svg viewBox="0 0 32 32" id={(this.state.filterName === 'Aging' || this.state.filterName === 'Calluses' || this.state.filterName === 'Cellulite' || this.state.filterName === 'Cuticles' || this.state.filterName === 'Dullness' || this.state.filterName === 'Redness') ? "filter-item-checkbox-svg2" : (this.state.filterName === "Blackheads" || this.state.filterName === 'Dark Circles' || this.state.filterName === 'Sensitivity' || this.state.filterName === 'Stretch Marks' || this.state.filterName === 'Sun Damage') ? "filter-item-checkbox-svg3" : "filter-item-checkbox-svg"}  style={{display: this.state.display}}>
                 <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
               </svg>
               <div id="checkbox-box" onClick={this.handleClick}></div>
