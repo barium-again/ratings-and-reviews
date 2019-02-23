@@ -20,7 +20,7 @@ Product.find().then(result => {
 
 const getRatings = (req, res) => {
   let { id } = req.params;
-  Product.findOne({ id }).then(result => {
+  Product.findOne({ id: 5 }).then(result => {
     res.status(200).json(result);
   });
 };

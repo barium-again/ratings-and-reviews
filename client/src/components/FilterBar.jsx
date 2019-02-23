@@ -102,8 +102,6 @@ class FilterBar extends React.Component {
     let arr = this.state.filterByObj[name]
     let newArr = [];
 
-
-    
       for(let i = 0 ; i < arr.length; i++) {
         if(arr[i] !== filter) {
           newArr.push(arr[i])
@@ -151,7 +149,6 @@ class FilterBar extends React.Component {
             <QuestionMark />
           </div>
         </div>
-        {/* <div id="show-reviews-from-container"> */}
           
           <div>
             <div>
