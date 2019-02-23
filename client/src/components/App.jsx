@@ -10,6 +10,17 @@ import Review from './Review.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      index: 6
+    };
+  }
+
+  updateIndex() {
+    let newIndex = this.state.index + 6;
+    this.setState({
+      renderedArr: this.state.reviewsArr.slice(0, newIndex),
+      index: newIndex
+    });
   }
 
   componentDidMount() {
@@ -56,6 +67,9 @@ class App extends React.Component {
           )
         )
       );
+
+      let renderedArr = reviewsArr.slice(0, this.state.index);
+
       // console.log(reviewsArr);
 
       this.setState(
@@ -72,7 +86,8 @@ class App extends React.Component {
           twoStarCount,
           oneStarCount,
           starAverage,
-          reviewsArr: reviewsArr
+          reviewsArr,
+          renderedArr
         },
         () => this.forceUpdate()
       );
@@ -81,7 +96,7 @@ class App extends React.Component {
 
   render() {
     // console.log('current state status', this.state);
-    if (this.state !== null) {
+    if (this.state.reviewsArr !== undefined) {
       return (
         <div id="main">
           <div id="ratings-reviews">
