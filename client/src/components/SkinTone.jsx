@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './app.css';
 
-class Content extends React.Component {
+class SkinTone extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,27 +14,24 @@ class Content extends React.Component {
 
   handleClick() {
     if(this.state.display === 'none'){
-      this.setState({display: 'block'}, () => {
-        this.props.addFilter('Content', this.state.filterName)
+      this.setState({display: 'solid'}, () => {
+        this.props.addFilter('SkinTone', this.state.filterName)
       })
     } else {
       this.setState({display: 'none'} , () => {
-        this.props.deleteFilter('Content', this.state.filterName)
+        this.props.deleteFilter('SkinTone', this.state.filterName)
       })
     }
 
   }
   render() {
     return (
-      <div id="filter-item" >
-        <div>
+      <div id="filter-item">
+        <div >
           <label id="filter-item-label">
             <input id="filter-item-input" type="checkbox" value={"" + this.state.filterName + ""}></input>
             <div id="filter-item-checkbox" onClick={this.handleClick}>
-              <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: this.state.display}}>
-                <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-              </svg>
-              <div id="checkbox-box" onClick={this.handleClick}></div>
+              <img id="color-img" style ={{border: this.state.display}} onClick={this.handleClick} src={`https://www.sephora.com/img/ufe/rich-profile/skintone-${this.state.filterName.toLowerCase()}.png`}></img>
             </div>
             <div id="filter-item-label" onClick={this.handleClick}>{this.state.filterName}</div>
           </label>
@@ -44,4 +41,4 @@ class Content extends React.Component {
   }
 }
 
-export default Content;
+export default SkinTone;

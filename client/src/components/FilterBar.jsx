@@ -2,6 +2,12 @@ import React from 'react';
 import styles from './app.css';
 import QuestionMark from './QuestionMark.jsx';
 import Content from './Content.jsx'
+import EyeColor from './EyeColor.jsx'
+import HairColor from './HairColor.jsx'
+import SkinTone from './SkinTone.jsx'
+import SkinType from './SkinType.jsx'
+import AgeRange from './AgeRange.jsx'
+import SkinConcerns from './SkinConcerns.jsx'
 
 class FilterBar extends React.Component {
   constructor(props) {
@@ -20,7 +26,13 @@ class FilterBar extends React.Component {
       toggleM: false,
       toggle0: false,
       filterByObj: {},
-      contentArr : ['Photos', 'Video']
+      contentArr : ['Photos', 'Video'],
+      eyeColorArr: ['Blue', 'Brown', 'Green', 'Gray', 'Hazel'],
+      hairColorArr: ['Blonde', 'Brunette', 'Auburn', 'Black', 'Red', 'Gray'],
+      skinToneArr: ['Porcelain', 'Fair', 'Light', 'Medium', 'Tan', 'Olive', 'Deep', 'Dark', 'Ebony'],
+      skinTypeArr: ['Normal', 'Combination', 'Dry', 'Oily'],
+      ageRangeArr: ['13-17', '18-24', '25-34', '35-44', '45-54', 'Over 54'],
+      skinConcernsArr: ['Acne', 'Aging', 'Blackheads', 'Calluses', 'Cellulite', 'Cuticles', 'DarkCircles', 'Dullness', 'Redness', 'Sensitivity', 'StretchMarks', 'SunDamage']
 
     }
     this.handleClick = this.handleClick.bind(this);
@@ -237,34 +249,6 @@ class FilterBar extends React.Component {
                             {this.state.contentArr.map(name => (
                               <Content name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
                             ))}
-                            {/* <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg>
-                                    <div id="checkbox-box"></div>
-                                  </div>
-                                  <div id="filter-item-label">Photos</div>
-                                </label>
-                              </div>
-                            </div>
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Video"></input>
-                                  <div id="filter-item-checkbox">
-                                    <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg>
-                                    <div id="checkbox-box"></div>
-                                  </div>
-                                  <div id="filter-item-label">Video</div>
-                                </label>
-                              </div>
-                            </div> */}
                           </div>
                         </div>
                         <div id="filter-menu-button-container">
@@ -291,80 +275,9 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/eyecolor-blue.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Blue</div>
-                                </label>
-                              </div>
-                            </div>
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Video"></input>
-                                  <div id="filter-item-checkbox">
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/eyecolor-brown.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Brown</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/eyecolor-green.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Green</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/eyecolor-grey.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Gray</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/eyecolor-hazel.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Hazel</div>
-                                </label>
-                              </div>
-                            </div>
-
+                            {this.state.eyeColorArr.map(name => (
+                              <EyeColor name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            ))}                       
 
                           </div>
                         </div>
@@ -394,95 +307,10 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/haircolor-blonde.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Blonde</div>
-                                </label>
-                              </div>
-                            </div>
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Video"></input>
-                                  <div id="filter-item-checkbox">
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/haircolor-brunette.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Brunette</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/haircolor-auburn.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Auburn</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/haircolor-black.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Black</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/haircolor-red.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Red</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/haircolor-gray.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Gray</div>
-                                </label>
-                              </div>
-                            </div>
-
+                            {this.state.hairColorArr.map(name => (
+                              <HairColor name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            ))}
+                            
 
                           </div>
                         </div>
@@ -511,139 +339,9 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-porcelain.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Porcelain</div>
-                                </label>
-                              </div>
-                            </div>
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Video"></input>
-                                  <div id="filter-item-checkbox">
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-fair.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Fair</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-light.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Light</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-medium.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Medium</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-tan.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Tan</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-olive.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Olive</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-deep.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Deep</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-dark.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Dark</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    {/* <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg> */}
-                                    <img id="color-img" src="https://www.sephora.com/img/ufe/rich-profile/skintone-ebony.png" ></img>
-                                  </div>
-                                  <div id="filter-item-label">Ebony</div>
-                                </label>
-                              </div>
-                            </div>
+                          {this.state.skinToneArr.map(name => (
+                            <SkinTone name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                          ))}                   
 
 
                           </div>
@@ -673,64 +371,10 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg>
-                                    <div id="checkbox-box"></div>
-                                  </div>
-                                  <div id="filter-item-label">Normal</div>
-                                </label>
-                              </div>
-                            </div>
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Video"></input>
-                                  <div id="filter-item-checkbox">
-                                    <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg2" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg>
-                                    <div id="checkbox-box"></div>
-                                  </div>
-                                  <div id="filter-item-label">Combination</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div >
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg>
-                                    <div id="checkbox-box"></div>
-                                  </div>
-                                  <div id="filter-item-label">Dry</div>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div id="filter-item">
-                              <div id="filter-item2">
-                                <label id="filter-item-label">
-                                  <input id="filter-item-input" type="checkbox" value="Photos"></input>
-                                  <div id="filter-item-checkbox" >
-                                    <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: 'none'}}>
-                                      <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
-                                    </svg>
-                                    <div id="checkbox-box"></div>
-                                  </div>
-                                  <div id="filter-item-label">Oily</div>
-                                </label>
-                              </div>
-                            </div>
+                            {this.state.skinTypeArr.map(name => (
+                              <SkinType name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            ))}
+                     
 
                           </div>
                         </div>
@@ -759,7 +403,11 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            <div id="filter-item">
+                          {this.state.ageRangeArr.map(name => (
+                              <AgeRange name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            ))}  
+                            
+                            {/* <div id="filter-item">
                               <div >
                                 <label id="filter-item-label">
                                   <input id="filter-item-input" type="checkbox" value="Photos"></input>
@@ -846,7 +494,7 @@ class FilterBar extends React.Component {
                                   <div id="filter-item-label">Over 54</div>
                                 </label>
                               </div>
-                            </div>
+                            </div> */}
 
                           </div>
                         </div>
@@ -874,7 +522,10 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            <div id="filter-item">
+                            {this.state.skinConcernsArr.map(name => (
+                              <SkinConcerns name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            ))}
+                            {/* <div id="filter-item">
                               <div >
                                 <label id="filter-item-label">
                                   <input id="filter-item-input" type="checkbox" value="Photos"></input>
@@ -1066,7 +717,7 @@ class FilterBar extends React.Component {
                                   <div id="filter-item-label">Uneven Skin Tones</div>
                                 </label>
                               </div>
-                            </div>
+                            </div> */}
 
                           </div>
                         </div>

@@ -687,7 +687,7 @@ table {
   /* display: flex; */
   display: inline-block;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.25;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -713,6 +713,7 @@ table {
   margin-top: -0.0625em;
   margin-right: 3px;
   margin-left: 12px;
+  margin-right: 12px;
   flex-shrink: 0;
   border-radius: 4px;
   border-width: 2px;
@@ -831,10 +832,14 @@ table {
 
 #color-img {
   display: block;
-  height: 18px;
+  height: 24px;
   max-width: 100%;
-  width: 18px;
-  padding-top: 3px;
+  width: 24px;
+  /* padding-top: 3px; */
+  /* margin-top: 4px; */
+  /* border: solid; */
+  border-radius: 4px;
+  border-width: 3px;
 }
 
 #checkbox-box {

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './app.css';
 
-class Content extends React.Component {
+class SkinType extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,11 +15,11 @@ class Content extends React.Component {
   handleClick() {
     if(this.state.display === 'none'){
       this.setState({display: 'block'}, () => {
-        this.props.addFilter('Content', this.state.filterName)
+        this.props.addFilter('SkinType', this.state.filterName)
       })
     } else {
       this.setState({display: 'none'} , () => {
-        this.props.deleteFilter('Content', this.state.filterName)
+        this.props.deleteFilter('SkinType', this.state.filterName)
       })
     }
 
@@ -31,7 +31,7 @@ class Content extends React.Component {
           <label id="filter-item-label">
             <input id="filter-item-input" type="checkbox" value={"" + this.state.filterName + ""}></input>
             <div id="filter-item-checkbox" onClick={this.handleClick}>
-              <svg viewBox="0 0 32 32" id="filter-item-checkbox-svg" style={{display: this.state.display}}>
+              <svg viewBox="0 0 32 32" id={(this.state.filterName === 'Normal') ? "filter-item-checkbox-svg2" : this.state.filterName === 'Combination' ? "filter-item-checkbox-svg3" : "filter-item-checkbox-svg"} style={{display: this.state.display}}>
                 <path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path>
               </svg>
               <div id="checkbox-box" onClick={this.handleClick}></div>
@@ -44,4 +44,4 @@ class Content extends React.Component {
   }
 }
 
-export default Content;
+export default SkinType;
