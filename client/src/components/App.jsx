@@ -123,7 +123,9 @@ class App extends React.Component {
     // console.log('current state status', this.state);
     if (this.state.reviewsArr !== undefined) {
       return (
+        <div id="main-container">
         <div id="main">
+          <div id='review-top-divider'></div>
           <div id="ratings-reviews">
             <h2 id="header">Ratings & Reviews</h2>
             <div id="write-review-and-charts">
@@ -288,6 +290,8 @@ class App extends React.Component {
               </svg>
             </button>
           </div>
+        </div>
+        <div id="review-top-divider"></div>
         </div>
       );
     } else {
