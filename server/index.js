@@ -1,27 +1,27 @@
 const express = require('express');
 const parser = require('body-parser');
 const path = require('path');
-const PORT = 3000;
-const {Review, Product} = require('../database')
+const morgan = require('morgan');
+const PORT = 3003;
+const { Review, Product } = require('../database');
 
 const app = express();
 
-app.use(parser.json())
-app.use(parser.urlencoded({extended:true}))
+app.use(morgan('dev'));
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
 
 const getRatings = (req, res) => {
-    let rand = Math.floor(Math.random() * 100);
-    Product.findOne().skip(rand)
-      .then(results => {
-          res.status(200).send(results)
-      })
-}
+  let { id } = req.params;
+  Product.findOne({ id }).then(result => {
+    res.status(200).json(result);
+  });
+};
 
-app.get('/ratings', getRatings)
+app.get('/ratings/:id', getRatings);
 
-app.use(express.static(path.join(__dirname, '../client/dist')))
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.listen(PORT, () => {
-    console.log('listening to port')
-})
-
+  console.log('listening to port');
+});
