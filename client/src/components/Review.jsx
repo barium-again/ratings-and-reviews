@@ -12,6 +12,12 @@ class Review extends React.Component {
     }
   }
 
+  // componentWillReceiveProps() {
+  //   this.setState({
+  //     review: this.props.review
+  //   });
+  // }
+
 
   render() {
     let dateObj = {
@@ -28,8 +34,7 @@ class Review extends React.Component {
       "11" : "Nov",
       "12" : "Dec"
     }
-    let month = dateObj[this.state.review.date[5] + this.state.review.date[6]]
-    // console.log(month);
+    let month = dateObj[this.props.review.date[5] + this.props.review.date[6]]
     return (
       <div id="review-main-container">
         <div id="review-divider"></div>
@@ -42,23 +47,23 @@ class Review extends React.Component {
                 </div>
                 <div id="username-container">
                   <div id="username-container2">
-                    {(this.state.review !== 0) ? <span id="username">{this.state.review.username}</span> : <span></span>}
+                    {(this.props.review !== 0) ? <span id="username">{this.props.review.username}</span> : <span></span>}
                   </div>
                 </div>
               </div>
               <div>
                 <div id="user-info-container1">
                   <div id="user-attribute">
-                    <b>Eye Color</b> {this.state.review.eyeColor}
+                    <b>Eye Color</b> {this.props.review.eyeColor}
                   </div>
                   <div id="user-attribute">
-                    <b>Hair Color</b> {this.state.review.hairColor}
+                    <b>Hair Color</b> {this.props.review.hairColor}
                   </div>
                   <div id="user-attribute">
-                    <b>Skin Tone</b> {this.state.review.skinTone}
+                    <b>Skin Tone</b> {this.props.review.skinTone}
                   </div>
                   <div id="user-attribute">
-                    <b>Skin Type</b> {this.state.review.skinType}
+                    <b>Skin Type</b> {this.props.review.skinType}
                   </div>
 
                 </div>
@@ -70,7 +75,7 @@ class Review extends React.Component {
               <div id="review-star-and-date">
                 <div id="review-star">
                   <Ratings
-                    rating={this.state.review.ratingsNumber}
+                    rating={this.props.review.ratingsNumber}
                     widgetRatedColors="black"
                     widgetSpacings="0px"
                   >
@@ -103,18 +108,18 @@ class Review extends React.Component {
                   </Ratings>
                 
                 </div>
-                <span id="review-date">{(this.state.review.date[8] !== '0') ? this.state.review.date[8]+this.state.review.date[9] : this.state.review.date[9]}  
-                {" "}{month}{" "}{this.state.review.date.slice(0, 4)}</span>
+                <span id="review-date">{(this.props.review.date[8] !== '0') ? this.props.review.date[8]+this.props.review.date[9] : this.props.review.date[9]}  
+                {" "}{month}{" "}{this.props.review.date.slice(0, 4)}</span>
 
               </div>
               <div id="review-title"></div>
-              <div id="review-text">{this.state.review.review}</div>
+              <div id="review-text">{this.props.review.review}</div>
               <div id="space"></div>
               <div id="recommends"></div>
             </div>
             <div id="reviews-buttons-container">
-              <div id="review-button">NOT HELPFUL{" (" +this.state.review.notHelpfulCount + ")"}</div>
-              <div id="review-button" style={{marginLeft: '16px'}}>HELPFUL{" (" +this.state.review.helpfulCount + ")"}</div>
+              <div id="review-button">NOT HELPFUL{" (" +this.props.review.notHelpfulCount + ")"}</div>
+              <div id="review-button" style={{marginLeft: '16px'}}>HELPFUL{" (" +this.props.review.helpfulCount + ")"}</div>
             </div>
           
           </div>

@@ -15,11 +15,11 @@ class SkinConcerns extends React.Component {
   handleClick() {
     if(this.state.display === 'none'){
       this.setState({display: 'block'}, () => {
-        this.props.addFilter('SkinConcerns', this.state.filterName)
+        this.props.addFilter('skinConcerns', this.state.filterName)
       })
     } else {
       this.setState({display: 'none'} , () => {
-        this.props.deleteFilter('SkinConcerns', this.state.filterName)
+        this.props.deleteFilter('skinConcerns', this.state.filterName)
       })
     }
 

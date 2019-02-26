@@ -84,22 +84,21 @@ class FilterBar extends React.Component {
 
   }
 
-  addFilter(name, filter) {
+  addFilter(filterCategory, filter) {
     let newFilterObj = this.state.filterByObj;
-    if(newFilterObj[name] === undefined) {
-      newFilterObj[name] = [];
+    if(newFilterObj[filterCategory] === undefined) {
+      newFilterObj[filterCategory] = [];
     }
-    if(newFilterObj[name].includes(filter) === false) {
-      newFilterObj[name].push(filter)
-      console.log(newFilterObj[name])
+    if(newFilterObj[filterCategory].includes(filter) === false) {
+      newFilterObj[filterCategory].push(filter)
 
       this.setState({filterByObj: newFilterObj})
     }
   }
 
-  deleteFilter(name, filter) {
+  deleteFilter(filterCategory, filter) {
     let newFilterObj = this.state.filterByObj;
-    let arr = this.state.filterByObj[name]
+    let arr = this.state.filterByObj[filterCategory]
     let newArr = [];
 
       for(let i = 0 ; i < arr.length; i++) {
@@ -108,8 +107,8 @@ class FilterBar extends React.Component {
         }
       }
     
-      newFilterObj[name] = newArr;
-      console.log(newFilterObj[name])
+      newFilterObj[filterCategory] = newArr;
+
       this.setState({filterByObj: newFilterObj})
   
 
@@ -238,7 +237,6 @@ class FilterBar extends React.Component {
                       </svg>
                     </div>
                     <div id="filter-item-menu-container" ref={node => this.nodeB = node} style={this.state.toggleA ? {display: 'block'}: {display: 'none'}}>
-                    {/* style={toggle ? {display: 'block'}: {display: 'none'}} */}
                       <div id="filter-item-menu">
                       
                         <div id="filter-item-container">
@@ -283,7 +281,9 @@ class FilterBar extends React.Component {
                             <button id="filter-menu-reset-button" type="button">Reset</button>
                           </div>
                           <div id="filter-menu-button">
-                            <button id="filter-menu-done-button" type="button">Done</button>
+                            <button id="filter-menu-done-button" type="button" onClick={() => {
+                              this.setState({toggleC : false} , () => this.props.updateFilter(this.state.filterByObj))
+                              }}>Done</button>
                           </div>
                         </div>
                       </div>
@@ -316,7 +316,9 @@ class FilterBar extends React.Component {
                             <button id="filter-menu-reset-button" type="button">Reset</button>
                           </div>
                           <div id="filter-menu-button">
-                            <button id="filter-menu-done-button" type="button">Done</button>
+                            <button id="filter-menu-done-button" type="button" onClick={() => {
+                              this.setState({toggleE : false} , () => this.props.updateFilter(this.state.filterByObj))
+                              }}>Done</button>
                           </div>
                         </div>
                       </div>
@@ -348,7 +350,9 @@ class FilterBar extends React.Component {
                             <button id="filter-menu-reset-button" type="button">Reset</button>
                           </div>
                           <div id="filter-menu-button">
-                            <button id="filter-menu-done-button" type="button">Done</button>
+                            <button id="filter-menu-done-button" type="button" onClick={() => {
+                              this.setState({toggleG : false} , () => this.props.updateFilter(this.state.filterByObj))
+                              }}>Done</button>
                           </div>
                         </div>
                       </div>
@@ -380,7 +384,9 @@ class FilterBar extends React.Component {
                             <button id="filter-menu-reset-button" type="button">Reset</button>
                           </div>
                           <div id="filter-menu-button">
-                            <button id="filter-menu-done-button" type="button">Done</button>
+                            <button id="filter-menu-done-button" type="button" onClick={() => {
+                              this.setState({toggleI : false} , () => this.props.updateFilter(this.state.filterByObj))
+                              }}>Done</button>
                           </div>
                         </div>
                       </div>
@@ -411,7 +417,9 @@ class FilterBar extends React.Component {
                             <button id="filter-menu-reset-button" type="button">Reset</button>
                           </div>
                           <div id="filter-menu-button">
-                            <button id="filter-menu-done-button" type="button">Done</button>
+                            <button id="filter-menu-done-button" type="button" onClick={() => {
+                              this.setState({toggleK : false} , () => this.props.updateFilter(this.state.filterByObj))
+                              }}>Done</button>
                           </div>
                         </div>
                       </div>
@@ -442,7 +450,9 @@ class FilterBar extends React.Component {
                             <button id="filter-menu-reset-button" type="button">Reset</button>
                           </div>
                           <div id="filter-menu-button">
-                            <button id="filter-menu-done-button" type="button">Done</button>
+                            <button id="filter-menu-done-button" type="button" onClick={() => {
+                              this.setState({toggleM : false} , () => this.props.updateFilter(this.state.filterByObj))
+                              }}>Done</button>
                           </div>
                         </div>
                       </div>
@@ -454,7 +464,6 @@ class FilterBar extends React.Component {
               </div>
             </div>
           </div>
-        {/* </div> */}
       </div>
     )
 

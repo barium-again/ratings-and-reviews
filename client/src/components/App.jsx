@@ -11,9 +11,55 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 6
+      index: 6,
+      filterByObj : {}
     };
     this.updateIndex = this.updateIndex.bind(this);
+    this.updateFilter = this.updateFilter.bind(this);
+  }
+
+  updateFilter(filterObj) {   
+    let newReviewsArr = [];
+    if(this.state.oldReviewArr !== undefined) {
+      let index = 0;
+      for(let key in filterObj) {
+        if(index === 0) {
+          index++
+          for(let i = 0; i < filterObj[key].length; i++) {
+            for(let j = 0; j < this.state.oldReviewArr.length; j++) {
+              if(this.state.oldReviewArr[j][key] === filterObj[key][i]) {
+                newReviewsArr.push(this.state.oldReviewArr[j])
+              }
+            }
+          }
+        } else {
+          let anotherNewReviewsArr = [];
+          for(let i = 0; i < filterObj[key].length; i++) {
+            for(let j = 0; j < newReviewsArr.length; j++) {
+              if(newReviewsArr[j][key] === filterObj[key][i]) {
+                anotherNewReviewsArr.push(newReviewsArr[j])
+              }
+            }
+          }
+          newReviewsArr = anotherNewReviewsArr
+        }
+      }
+      let newRenderedArr = newReviewsArr.slice(0, this.state.index);
+      this.setState({reviewsArr : newReviewsArr, renderedArr : newRenderedArr})
+    } else {
+      for(let key in filterObj) {
+          for(let i = 0; i < filterObj[key].length; i++) {
+            for(let j = 0; j < this.state.reviewsArr.length; j++) {
+              if(this.state.reviewsArr[j][key] === filterObj[key][i]) {
+                newReviewsArr.push(this.state.reviewsArr[j])
+              }
+            }
+          }
+        }
+        let oldReviewArr = this.state.reviewsArr;
+        let newRenderedArr = newReviewsArr.slice(0, this.state.index);
+        this.setState({reviewsArr : newReviewsArr, renderedArr : newRenderedArr, oldReviewArr}, () => console.log(this.state.renderedArr))
+      }
   }
 
   updateIndex() {
@@ -25,15 +71,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/ratings/5').then(results => {
-      console.log(results);
+    axios.get('/ratings').then(results => {
       let reviewNum =
         results.data.fiveStarReviews.length +
         results.data.fourStarReviews.length +
         results.data.threeStarReviews.length +
         results.data.twoStarReviews.length +
         results.data.oneStarReviews.length;
-      // console.log(reviewNum);
       let fiveStarCount = results.data.fiveStarReviews.length;
       let fourStarCount = results.data.fourStarReviews.length;
       let threeStarCount = results.data.threeStarReviews.length;
@@ -50,7 +94,7 @@ class App extends React.Component {
         (results.data.twoStarReviews.length / reviewNum) * 100;
       let oneStarReviewsPercentage =
         (results.data.oneStarReviews.length / reviewNum) * 100;
-      // console.log(fiveStarReviewsPercentage);
+
 
       let starAverage =
         (fiveStarCount * 5 +
@@ -69,19 +113,6 @@ class App extends React.Component {
         )
       );
 
-      let bubbleSort = function(arr) {
-        for(let i = arr.length - 1; i >= 0; i--) {
-          for(let j = 1; j <= i; j++) {
-            if(arr[j-1].helpfulCount > arr[j].helpfulCount){
-              let temp = arr[j-1]
-              arr[j-1] = arr[j]
-              arr[j] = temp;
-            }
-          }
-        }
-        return arr;
-      }
-      reviewsArr = bubbleSort(reviewsArr);
 
       let renderedArr = reviewsArr.slice(0, this.state.index);
 
@@ -119,8 +150,9 @@ class App extends React.Component {
     return arr;
   }
 
+
+
   render() {
-    // console.log('current state status', this.state);
     if (this.state.reviewsArr !== undefined) {
       return (
         <div id="main-container">
@@ -268,20 +300,11 @@ class App extends React.Component {
                 </div>
               </div>
             </div>
-            <FilterBar />
-            {this.state.reviewsArr !== 0 ? (
-              <Review review={this.state.reviewsArr[0]} />
-            ) : (
-              <div />
-            )}
+            <FilterBar updateFilter={this.updateFilter}/>
           </div>
-          {this.state.reviewsArr !== 0 ? (
-            this.state.renderedArr.map((review, key) => (
+            {this.state.renderedArr.map((review, key) => (
               <Review review={review} key={key} />
-            ))
-          ) : (
-            <div />
-          )}
+            ))}
           <div id="show-more-reviews">
             <button id="show-more-reviews-btn" onClick={this.updateIndex}>
               Show 6 more reviews

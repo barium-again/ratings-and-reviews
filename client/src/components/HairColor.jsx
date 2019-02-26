@@ -15,11 +15,11 @@ class HairColor extends React.Component {
   handleClick() {
     if(this.state.display === 'none'){
       this.setState({display: 'solid'}, () => {
-        this.props.addFilter('HairColor', this.state.filterName)
+        this.props.addFilter('hairColor', this.state.filterName)
       })
     } else {
       this.setState({display: 'none'} , () => {
-        this.props.deleteFilter('HairColor', this.state.filterName)
+        this.props.deleteFilter('hairColor', this.state.filterName)
       })
     }
 

@@ -15,11 +15,11 @@ class AgeRange extends React.Component {
   handleClick() {
     if(this.state.display === 'none'){
       this.setState({display: 'block'}, () => {
-        this.props.addFilter('AgeRange', this.state.filterName)
+        this.props.addFilter('ageRange', this.state.filterName)
       })
     } else {
       this.setState({display: 'none'} , () => {
-        this.props.deleteFilter('AgeRange', this.state.filterName)
+        this.props.deleteFilter('ageRange', this.state.filterName)
       })
     }
 

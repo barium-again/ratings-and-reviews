@@ -15,11 +15,11 @@ class EyeColor extends React.Component {
   handleClick() {
     if(this.state.display === 'none'){
       this.setState({display: 'solid'}, () => {
-        this.props.addFilter('EyeColor', this.state.filterName)
+        this.props.addFilter('eyeColor', this.state.filterName)
       })
     } else {
       this.setState({display: 'none'} , () => {
-        this.props.deleteFilter('EyeColor', this.state.filterName)
+        this.props.deleteFilter('eyeColor', this.state.filterName)
       })
     }
 

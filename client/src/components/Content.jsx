@@ -15,11 +15,11 @@ class Content extends React.Component {
   handleClick() {
     if(this.state.display === 'none'){
       this.setState({display: 'block'}, () => {
-        this.props.addFilter('Content', this.state.filterName)
+        this.props.addFilter('content', this.state.filterName)
       })
     } else {
       this.setState({display: 'none'} , () => {
-        this.props.deleteFilter('Content', this.state.filterName)
+        this.props.deleteFilter('content', this.state.filterName)
       })
     }
 
