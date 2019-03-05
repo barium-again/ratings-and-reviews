@@ -14,7 +14,8 @@ app.use(parser.urlencoded({ extended: true }));
 
 Product.find().then(result => {
   if (result.length === 0) {
-    generateData();
+    console.log('no data')
+    // generateData();
   }
 });
 
@@ -30,5 +31,5 @@ app.get('/ratings/:id', getRatings);
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.listen(PORT, () => {
-  console.log('listening to port');
+  console.log('listening to port', PORT);
 });

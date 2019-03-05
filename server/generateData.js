@@ -1,166 +1,292 @@
-var faker = require('faker');
-var { Review, Product } = require('../database')
+const faker = require('faker');
+const fs = require('fs');
+const { Readable } = require('stream');
+const file = fs.createWriteStream('./data.json');
 
-var eyeColorArr = ['Blue', 'Brown', 'Green', 'Gray', 'Hazel'];
+// const { Review, Product } = require('../database')
 
-var hairColorArr = ['Blonde', 'Brunette', 'Auburn', 'Black', 'Red', 'Gray'];
+const eyeColorArr = ['Blue', 'Brown', 'Green', 'Gray', 'Hazel'];
 
-var skinToneArr = ['Porcelain', 'Fair', 'Light', 'Medium', 'Tan', 'Olive', 'Deep', 'Dark', 'Ebony'];
+const hairColorArr = ['Blonde', 'Brunette', 'Auburn', 'Black', 'Red', 'Gray'];
 
-var skinTypeArr = ['Normal', 'Combination', 'Dry', 'Oily'];
+const skinToneArr = ['Porcelain', 'Fair', 'Light', 'Medium', 'Tan', 'Olive', 'Deep', 'Dark', 'Ebony'];
 
-var ageRangeArr = ['13-17', '18-24', '25-34', '35-44', '45-54', 'Over 54'];
+const skinTypeArr = ['Normal', 'Combination', 'Dry', 'Oily'];
 
-var skinConcernsArr = ['Acne', 'Aging', 'Blackheads', 'Calluses', 'Cellulite', 'Cuticles', 'Dark Circles', 
-'Dullness', 'Redness', 'Sensitivity', 'Stretch Marks', 'Sun Damage', 'Uneven Skin Tones' ]
+const ageRangeArr = ['13-17', '18-24', '25-34', '35-44', '45-54', 'Over 54'];
 
+const skinConcernsArr = ['Acne', 'Aging', 'Blackheads', 'Calluses', 'Cellulite', 'Cuticles', 'Dark Circles',
+    'Dullness', 'Redness', 'Sensitivity', 'Stretch Marks', 'Sun Damage', 'Uneven Skin Tones']
 
-var id = 0;
-var generateData = function () {
-  for(var i = 0; i < 100; i++) {
-      id++;
-      let productName = faker.lorem.words();
-      let fiveStarReviews =[];
-      let fourStarReviews =[];
-      let threeStarReviews =[];
-      let twoStarReviews =[];
-      let oneStarReviews =[];
-
-      let loopLength = Math.floor(Math.random() * 150) + 60
-
-      for(let i = 0; i < loopLength; i++) {
-          let reviewObj = {};
-          reviewObj.username = faker.name.firstName();
-          reviewObj.ratingsNumber = 5
-          reviewObj.eyeColor = eyeColorArr[Math.floor(Math.random() * 4) + 0]
-          reviewObj.hairColor = hairColorArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinTone = skinToneArr[Math.floor(Math.random() * 8) + 0]
-          reviewObj.skinType = skinTypeArr[Math.floor(Math.random() * 3) + 0]
-          reviewObj.ageRange = ageRangeArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinConcerns = skinConcernsArr[Math.floor(Math.random() * 12) + 0]
-          reviewObj.notHelpfulCount = 0;
-          reviewObj.helpfulCount = 0;
-          reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
-          reviewObj.review = faker.lorem.paragraph();
-
-          let reviewDoc = new Review(reviewObj);
-
-          // Review.create({username, ratings, eyeColor, hairColor, skinTone, skinType, ageRange,
-          //     skinConcerns, notHelpful, helpful, date, review
-          // })
-          fiveStarReviews.push(reviewDoc);
-
-      }
-      loopLength = Math.floor(Math.random() * 50) + 25
-
-      for(let i = 0; i < loopLength; i++) {
-          let reviewObj = {};
-          reviewObj.username = faker.name.firstName();
-          reviewObj.ratingsNumber = 4
-          reviewObj.eyeColor = eyeColorArr[Math.floor(Math.random() * 4) + 0]
-          reviewObj.hairColor = hairColorArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinTone = skinToneArr[Math.floor(Math.random() * 8) + 0]
-          reviewObj.skinType = skinTypeArr[Math.floor(Math.random() * 3) + 0]
-          reviewObj.ageRange = ageRangeArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinConcerns = skinConcernsArr[Math.floor(Math.random() * 12) + 0]
-          reviewObj.notHelpfulCount = 0;
-          reviewObj.helpfulCount = 0;
-          reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
-          reviewObj.review = faker.lorem.paragraph();
-
-          let reviewDoc = new Review(reviewObj);
-
-          // Review.create({username, ratings, eyeColor, hairColor, skinTone, skinType, ageRange,
-          //     skinConcerns, notHelpful, helpful, date, review
-          // })
-          fourStarReviews.push(reviewDoc);
-
-      }
-
-      loopLength = Math.floor(Math.random() * 25) + 10
-
-      for(let i = 0; i < loopLength; i++) {
-          let reviewObj = {};
-          reviewObj.username = faker.name.firstName();
-          reviewObj.ratingsNumber = 3
-          reviewObj.eyeColor = eyeColorArr[Math.floor(Math.random() * 4) + 0]
-          reviewObj.hairColor = hairColorArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinTone = skinToneArr[Math.floor(Math.random() * 8) + 0]
-          reviewObj.skinType = skinTypeArr[Math.floor(Math.random() * 3) + 0]
-          reviewObj.ageRange = ageRangeArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinConcerns = skinConcernsArr[Math.floor(Math.random() * 12) + 0]
-          reviewObj.notHelpfulCount = 0;
-          reviewObj.helpfulCount = 0;
-          reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
-          reviewObj.review = faker.lorem.paragraph();
-
-          let reviewDoc = new Review(reviewObj);
-
-          // Review.create({username, ratings, eyeColor, hairColor, skinTone, skinType, ageRange,
-          //     skinConcerns, notHelpful, helpful, date, review
-          // })
-          threeStarReviews.push(reviewDoc);
-
-      }
-
-      loopLength = Math.floor(Math.random() * 25) + 10
-
-      for(let i = 0; i < loopLength; i++) {
-          let reviewObj = {};
-          reviewObj.username = faker.name.firstName();
-          reviewObj.ratingsNumber = 2
-          reviewObj.eyeColor = eyeColorArr[Math.floor(Math.random() * 4) + 0]
-          reviewObj.hairColor = hairColorArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinTone = skinToneArr[Math.floor(Math.random() * 8) + 0]
-          reviewObj.skinType = skinTypeArr[Math.floor(Math.random() * 3) + 0]
-          reviewObj.ageRange = ageRangeArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinConcerns = skinConcernsArr[Math.floor(Math.random() * 12) + 0]
-          reviewObj.notHelpfulCount = 0;
-          reviewObj.helpfulCount = 0;
-          reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
-          reviewObj.review = faker.lorem.paragraph();
-
-          let reviewDoc = new Review(reviewObj);
-
-          // Review.create({username, ratings, eyeColor, hairColor, skinTone, skinType, ageRange,
-          //     skinConcerns, notHelpful, helpful, date, review
-          // })
-          twoStarReviews.push(reviewDoc);
-
-      }
-
-      loopLength = Math.floor(Math.random() * 15) + 0
-
-      for(let i = 0; i < loopLength; i++) {
-          let reviewObj = {};
-          reviewObj.username = faker.name.firstName();
-          reviewObj.ratingsNumber = 4
-          reviewObj.eyeColor = eyeColorArr[Math.floor(Math.random() * 4) + 0]
-          reviewObj.hairColor = hairColorArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinTone = skinToneArr[Math.floor(Math.random() * 8) + 0]
-          reviewObj.skinType = skinTypeArr[Math.floor(Math.random() * 3) + 0]
-          reviewObj.ageRange = ageRangeArr[Math.floor(Math.random() * 5) + 0]
-          reviewObj.skinConcerns = skinConcernsArr[Math.floor(Math.random() * 12) + 0]
-          reviewObj.notHelpfulCount = 0;
-          reviewObj.helpfulCount = 0;
-          reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
-          reviewObj.review = faker.lorem.paragraph();
-
-          let reviewDoc = new Review(reviewObj);
-
-          // Review.create({username, ratings, eyeColor, hairColor, skinTone, skinType, ageRange,
-          //     skinConcerns, notHelpful, helpful, date, review
-          // })
-          oneStarReviews.push(reviewDoc);
-
-      }
-
-      Product.create({id, productName, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews})
-
-  }
+let id = 0;
+// let length = 1e7;
+const randomizeArr = (arr) => {
+    return arr[Math.floor(Math.random() * arr.length)];
 }
 
-module.exports = generateData
+let current = 0;
+
+const inStream = new Readable({
+
+    read() {
+        // for (var j = 0; j < length; j++) {
+            id++;
+            let productName = faker.lorem.words();
+            let fiveStarReviews = [];
+            let fourStarReviews = [];
+            let threeStarReviews = [];
+            let twoStarReviews = [];
+            let oneStarReviews = [];
+
+            let loopLength = Math.ceil(Math.random() * 3);
+            for (let i = 0; i < loopLength; i++) {
+                let reviewObj = {};
+                reviewObj.username = faker.name.firstName();
+                reviewObj.ratingsNumber = 5
+                reviewObj.eyeColor = randomizeArr(eyeColorArr);
+                reviewObj.hairColor = randomizeArr(hairColorArr);
+                reviewObj.skinTone = randomizeArr(skinToneArr);
+                reviewObj.skinType = randomizeArr(skinTypeArr);
+                reviewObj.ageRange = randomizeArr(ageRangeArr);
+                reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+                reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+                reviewObj.review = faker.lorem.paragraph();
+
+                fiveStarReviews.push(reviewObj);
+
+            }
+
+            for (let i = 0; i < loopLength; i++) {
+                let reviewObj = {};
+                reviewObj.username = faker.name.firstName();
+                reviewObj.ratingsNumber = 4
+                reviewObj.eyeColor = randomizeArr(eyeColorArr);
+                reviewObj.hairColor = randomizeArr(hairColorArr);
+                reviewObj.skinTone = randomizeArr(skinToneArr);
+                reviewObj.skinType = randomizeArr(skinTypeArr);
+                reviewObj.ageRange = randomizeArr(ageRangeArr);
+                reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+                reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+                reviewObj.review = faker.lorem.paragraph();
+
+                fourStarReviews.push(reviewObj);
+            }
+
+            for (let i = 0; i < loopLength; i++) {
+                let reviewObj = {};
+                reviewObj.username = faker.name.firstName();
+                reviewObj.ratingsNumber = 3
+                reviewObj.eyeColor = randomizeArr(eyeColorArr);
+                reviewObj.hairColor = randomizeArr(hairColorArr);
+                reviewObj.skinTone = randomizeArr(skinToneArr);
+                reviewObj.skinType = randomizeArr(skinTypeArr);
+                reviewObj.ageRange = randomizeArr(ageRangeArr);
+                reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+                reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+                reviewObj.review = faker.lorem.paragraph();
+
+                threeStarReviews.push(reviewObj);
+
+            }
+
+            loopLength = Math.ceil(Math.random() * 2);
+            for (let i = 0; i < loopLength; i++) {
+                let reviewObj = {};
+                reviewObj.username = faker.name.firstName();
+                reviewObj.ratingsNumber = 2
+                reviewObj.eyeColor = randomizeArr(eyeColorArr);
+                reviewObj.hairColor = randomizeArr(hairColorArr);
+                reviewObj.skinTone = randomizeArr(skinToneArr);
+                reviewObj.skinType = randomizeArr(skinTypeArr);
+                reviewObj.ageRange = randomizeArr(ageRangeArr);
+                reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+                reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+                reviewObj.review = faker.lorem.paragraph();
+
+                twoStarReviews.push(reviewObj);
+            }
+
+            for (let i = 0; i < loopLength; i++) {
+                let reviewObj = {};
+                reviewObj.username = faker.name.firstName();
+                reviewObj.ratingsNumber = 1;
+                reviewObj.eyeColor = randomizeArr(eyeColorArr);
+                reviewObj.hairColor = randomizeArr(hairColorArr);
+                reviewObj.skinTone = randomizeArr(skinToneArr);
+                reviewObj.skinType = randomizeArr(skinTypeArr);
+                reviewObj.ageRange = randomizeArr(ageRangeArr);
+                reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+                reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+                reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+                reviewObj.review = faker.lorem.paragraph();
+
+                oneStarReviews.push(reviewObj);
+
+            }
+            if (current % 10000 === 0) console.log('adding', current)
+            // console.log('adding', j);
+            let obj = JSON.stringify({ id, productName, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews });
+
+            if (current === 0) {
+                this.push('[' + obj + ',');
+                current++;
+            } else if (current === 1e7 - 1) {
+                this.push(obj + ']');
+                current++;
+            } else if (current) {
+                this.push(obj + ',');
+                current++;
+            }
+            
+        // }
+        if (current === 1e7) {
+            this.push(null);
+        }
+    }
+});
+
+inStream.pipe(file)
+
+// const generateData = () => {
+    //   for(var j = 0; j < length; j++) {
+    //       id++;
+    //       let productName = faker.lorem.words();
+    //       let fiveStarReviews =[];
+    //       let fourStarReviews =[];
+    //       let threeStarReviews =[];
+    //       let twoStarReviews =[];
+    //       let oneStarReviews =[];
+
+    //       let loopLength = Math.ceil(Math.random() * 3);
+    //       for(let i = 0; i < loopLength; i++) {
+    //           let reviewObj = {};
+    //           reviewObj.username = faker.name.firstName();
+    //           reviewObj.ratingsNumber = 5
+    //           reviewObj.eyeColor = randomizeArr(eyeColorArr);
+    //           reviewObj.hairColor = randomizeArr(hairColorArr);
+    //           reviewObj.skinTone = randomizeArr(skinToneArr);
+    //           reviewObj.skinType = randomizeArr(skinTypeArr);
+    //           reviewObj.ageRange = randomizeArr(ageRangeArr);
+    //           reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+    //           reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+    //           reviewObj.review = faker.lorem.paragraph();
+
+    //           let reviewDoc = new Review(reviewObj);
+
+    //           fiveStarReviews.push(reviewDoc);
+
+    //       }
+
+    //       for(let i = 0; i < loopLength; i++) {
+    //           let reviewObj = {};
+    //           reviewObj.username = faker.name.firstName();
+    //           reviewObj.ratingsNumber = 4
+    //           reviewObj.eyeColor = randomizeArr(eyeColorArr);
+    //           reviewObj.hairColor = randomizeArr(hairColorArr);
+    //           reviewObj.skinTone = randomizeArr(skinToneArr);
+    //           reviewObj.skinType = randomizeArr(skinTypeArr);
+    //           reviewObj.ageRange = randomizeArr(ageRangeArr);
+    //           reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+    //           reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+    //           reviewObj.review = faker.lorem.paragraph();
+
+    //           let reviewDoc = new Review(reviewObj);
+    //           fourStarReviews.push(reviewDoc);
+    //       }
+
+    //       for(let i = 0; i < loopLength; i++) {
+    //           let reviewObj = {};
+    //           reviewObj.username = faker.name.firstName();
+    //           reviewObj.ratingsNumber = 3
+    //           reviewObj.eyeColor = randomizeArr(eyeColorArr);
+    //           reviewObj.hairColor = randomizeArr(hairColorArr);
+    //           reviewObj.skinTone = randomizeArr(skinToneArr);
+    //           reviewObj.skinType = randomizeArr(skinTypeArr);
+    //           reviewObj.ageRange = randomizeArr(ageRangeArr);
+    //           reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+    //           reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+    //           reviewObj.review = faker.lorem.paragraph();
+
+    //           let reviewDoc = new Review(reviewObj);
+
+    //           threeStarReviews.push(reviewDoc);
+
+    //       }
+
+    //       loopLength = Math.ceil(Math.random() * 2);
+    //       for(let i = 0; i < loopLength; i++) {
+    //           let reviewObj = {};
+    //           reviewObj.username = faker.name.firstName();
+    //           reviewObj.ratingsNumber = 2
+    //           reviewObj.eyeColor = randomizeArr(eyeColorArr);
+    //           reviewObj.hairColor = randomizeArr(hairColorArr);
+    //           reviewObj.skinTone = randomizeArr(skinToneArr);
+    //           reviewObj.skinType = randomizeArr(skinTypeArr);
+    //           reviewObj.ageRange = randomizeArr(ageRangeArr);
+    //           reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+    //           reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+    //           reviewObj.review = faker.lorem.paragraph();
+
+    //           let reviewDoc = new Review(reviewObj);
+
+    //           twoStarReviews.push(reviewDoc);
+    //       }
+
+    //       for(let i = 0; i < loopLength; i++) {
+    //           let reviewObj = {};
+    //           reviewObj.username = faker.name.firstName();
+    //           reviewObj.ratingsNumber = 1;
+    //           reviewObj.eyeColor = randomizeArr(eyeColorArr);
+    //           reviewObj.hairColor = randomizeArr(hairColorArr);
+    //           reviewObj.skinTone = randomizeArr(skinToneArr);
+    //           reviewObj.skinType = randomizeArr(skinTypeArr);
+    //           reviewObj.ageRange = randomizeArr(ageRangeArr);
+    //           reviewObj.skinConcerns = randomizeArr(skinConcernsArr);
+    //           reviewObj.notHelpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.helpfulCount = Math.ceil(Math.random() * 10);
+    //           reviewObj.date = faker.date.between('2017-01-01', '2019-02-06');
+    //           reviewObj.review = faker.lorem.paragraph();
+
+    //           let reviewDoc = new Review(reviewObj);
+
+    //           oneStarReviews.push(reviewDoc);
+
+    //       }
+    //       if (j % 10 === 0) console.log('adding', j)
+    //       let obj = JSON.stringify({id, productName, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews});
+
+    //       if (j === 0) {
+    //           file.write('[' + obj + ',');
+    //       } else if (j === length-1) {
+    //         file.write(obj + ']');
+    //     } else {
+    //         file.write(obj + ',');
+    //       }
+
+    //   }
+    //   file.end();
+// }
+
+// generateData();
+
+// module.exports = generateData
 
 
 
@@ -185,4 +311,3 @@ module.exports = generateData
 //     })
 // }   
 
- 
