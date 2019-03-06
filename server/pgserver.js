@@ -3,6 +3,7 @@ const parser = require('body-parser');
 const path = require('path');
 const morgan = require('morgan');
 const PORT = 3000;
+const { getReviews, postReview } = require('../database/sql.js');
 
 const app = express();
 
@@ -10,14 +11,8 @@ app.use(morgan('dev'));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
-const getRatings = (req, res) => {
-  let { id } = req.params;
-  Product.findOne({ id }).then(result => {
-    res.status(200).json(result);
-  });
-};
-
-app.get('/ratings/:id', getRatings);
+app.get('/reviews/:id', getReviews);
+app.post('/reviews', postReview);
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 

@@ -29,8 +29,9 @@ var productSchema = new mongoose.Schema({
 })
 
 var Product = mongoose.model('Product', productSchema);
+var ReviewMil = mongoose.model('reviewsMil');
 
-module.exports = { Review, Product };
+module.exports = { ReviewMil };
 
 
 // var mongoose = require('mongoose');
