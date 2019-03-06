@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "webpack -d --watch",
-    "start": "nodemon server/index.js"
+    "start": "nodemon server/index.js",
+    "start-sql": "nodemon server/pgserver.js"
   },
   "dependencies": {
     "@babel/core": "^7.2.2",
