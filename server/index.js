@@ -3,7 +3,7 @@ const parser = require('body-parser');
 const path = require('path');
 const morgan = require('morgan');
 const PORT = 3003;
-const { getReviews } = require('../database/mongo.js');
+const { getReviews, postReview } = require('../database/mongo.js');
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.use(parser.urlencoded({ extended: true }));
 // };
 
 app.get('/ratings/:id', getReviews);
+app.post('/ratings', postReview);
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
