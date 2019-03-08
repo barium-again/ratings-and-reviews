@@ -2,9 +2,7 @@ const faker = require('faker');
 const fs = require('fs');
 const { Readable } = require('stream');
 const productFile = fs.createWriteStream('./proddata.csv');
-
-
-
+    
 let id = 0;
 // let current = 0;
 const inStream = new Readable({
