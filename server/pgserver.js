@@ -23,14 +23,37 @@ const { getReviews, postReview, updateReview, deleteReview } = require('../datab
 // });
 
 const http = require('http');
-// const handleRequest = require('./request-handler.js');
+const fs = require('fs');
 const urlParser = require('url');
 const PORT = 3000;
 
 const server = http.createServer((req, res) => {
     const parts = urlParser.parse(req.url);
-    // console.log('parts', parts)
-    if (parts.pathname.includes('/reviews')) {
+    if (req.url === '/') {
+        fs.readFile('/Users/taylorbantle/Documents/HRLA27/Senior/SEC/ratings-and-reviews/client/dist/index.html', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.write("Not Found!", err);
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' });
+                res.write(data)
+            }
+            res.end()
+            
+        })
+    } else if (req.url === '/bundle.js') {
+        fs.readFile('/Users/taylorbantle/Documents/HRLA27/Senior/SEC/ratings-and-reviews/client/dist/bundle.js', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.write("Not Found!", err);
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/javascript' });
+                res.write(data)
+            }
+            res.end()
+            
+        })
+    } else if (parts.pathname.includes('/reviews')) {
         if (req.method === 'GET') {
             getReviews(req, res);
         } else if (req.method === 'POST') {
@@ -41,12 +64,11 @@ const server = http.createServer((req, res) => {
             deleteReview(req, res)
         } else if (request.method === 'OPTIONS') {
             res.writeHead(200);
-            res.end()
+            res.end();
         }
-    //   handleRequest.requestHandler(req, res);
     } else {
-      res.writeHead(404);
-      res.end(JSON.stringify('Not Found'))
+        res.writeHead(404);
+        res.end(JSON.stringify('Not Found!!'))
     }
 });
 
