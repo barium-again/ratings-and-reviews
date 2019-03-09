@@ -1,27 +1,4 @@
-// const express = require('express');
-// const parser = require('body-parser');
-// const path = require('path');
-// // const morgan = require('morgan');
-// const PORT = 3000;
-const { getReviews, postReview, updateReview, deleteReview } = require('../database/sql.js');
-
-// const app = express();
-
-// // app.use(morgan('dev'));
-// app.use(parser.json());
-// app.use(parser.urlencoded({ extended: true }));
-
-// app.get('/reviews/:id', getReviews);
-// app.post('/reviews', postReview);
-// app.put('/reviews/:id', updateReview);
-// app.delete('/reviews/:id', deleteReview);
-
-// app.use(express.static(path.join(__dirname, '../client/dist')));
-
-// app.listen(PORT, () => {
-//   console.log('listening to port', PORT);
-// });
-
+const { getReviews, postReview, updateReview, deleteReview, getProduct } = require('../database/sql.js');
 const http = require('http');
 const fs = require('fs');
 const urlParser = require('url');
@@ -65,6 +42,10 @@ const server = http.createServer((req, res) => {
         } else if (request.method === 'OPTIONS') {
             res.writeHead(200);
             res.end();
+        }
+    } else if (parts.pathname.includes('/product')){
+        if (req.method === 'GET') {
+            getProduct(req, res);
         }
     } else {
         res.writeHead(404);

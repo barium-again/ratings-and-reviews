@@ -1,9 +1,11 @@
 const Pool = require('pg').Pool;
+const {user, password, host, database, port} = require('../config.js')
 const pool = new Pool({
-    user: 'taylorbantle',
-    host: 'localhost',
-    database: 'reviews',
-    port: 5432
+    user,
+    password,
+    host,
+    database, 
+    port
 });
 
 const headers = {
@@ -16,19 +18,31 @@ const headers = {
 
 const getReviews = (req, res) => {
     let index = req.url.indexOf('s/');
-    // let id = req.url.substr(index+2);
-    let id = Math.ceil(Math.random() * 1e7)
-    console.log('id', id)
-    // const id = Math.ceil(Math.random() * 1e7); //10
+    let id = req.url.substr(index+2);
+    // let id = Math.ceil(Math.random() * 1e7)
     pool.query('SELECT * FROM reviews r INNER JOIN products p ON p.id = $1 AND p.id = r.prodid INNER JOIN users u ON u.id = r.userid', [id], (err, results) => {
         if (err) {
             res.writeHead(404, headers);
             res.end(JSON.stringify(err))
-            // res.status(404).send(err)
         } else {
             res.writeHead(200, headers);
             res.end(JSON.stringify(results.rows))
-            // res.status(200).json(results.rows)
+        }
+    })
+}
+
+const getProduct = (req, res) => {
+    let index = req.url.indexOf('t/');
+    let id = req.url.substr(index+2);
+    // let id = Math.ceil(Math.random() * 1e7)
+    console.log('product id', id)
+    pool.query('SELECT * FROM products where id = $1', [id], (err, results) => {
+        if (err) {
+            res.writeHead(404, headers);
+            res.end(JSON.stringify(err))
+        } else {
+            res.writeHead(200, headers);
+            res.end(JSON.stringify(results.rows))
         }
     })
 }
@@ -72,12 +86,8 @@ const updateReview = (req, res) => {
                 res.writeHead(201, headers);
                 res.end(id, 'updated')
             }
-            // res.status(200).send(`Modified review with ID ${id}`)
         })
     })
-    // const id = parseInt(req.params.id);
-    // const { rating, review } = req.body;
-    
 }
 
 const deleteReview = (req, res) => {
@@ -86,19 +96,18 @@ const deleteReview = (req, res) => {
     let id = req.url.substr(index+2)
     pool.query('DELETE FROM reviews WHERE id = $1', [id], (err, result) => {
         if (err) {
-            // res.status(404).send(err)
             res.writeHead(404);
             res.end(err)
         } else {
             res.writeHead(200, headers);
             res.end('deleted')
         }
-        // res.status(200).send('Review successfully deleted')
     })
 }
 
 module.exports = {
     getReviews,
+    getProduct,
     postReview,
     updateReview,
     deleteReview
