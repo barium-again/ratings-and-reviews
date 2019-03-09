@@ -71,30 +71,45 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/ratings/5').then(results => {
-      let reviewNum =
-        results.data.fiveStarReviews.length +
-        results.data.fourStarReviews.length +
-        results.data.threeStarReviews.length +
-        results.data.twoStarReviews.length +
-        results.data.oneStarReviews.length;
-      let fiveStarCount = results.data.fiveStarReviews.length;
-      let fourStarCount = results.data.fourStarReviews.length;
-      let threeStarCount = results.data.threeStarReviews.length;
-      let twoStarCount = results.data.twoStarReviews.length;
-      let oneStarCount = results.data.oneStarReviews.length;
+    axios.get('/reviews').then(result => {
+      // let reviewNum =
+      //   results.data.fiveStarReviews.length +
+      //   results.data.fourStarReviews.length +
+      //   results.data.threeStarReviews.length +
+      //   results.data.twoStarReviews.length +
+      //   results.data.oneStarReviews.length;
+      // let fiveStarCount = results.data.fiveStarReviews.length;
+      // let fourStarCount = results.data.fourStarReviews.length;
+      // let threeStarCount = results.data.threeStarReviews.length;
+      // let twoStarCount = results.data.twoStarReviews.length;
+      // let oneStarCount = results.data.oneStarReviews.length;
+      console.log(result.data)
+      let results = result.data
+      let reviewNum = results.length;
+      let fiveStarCount = 0;
+      let fourStarCount = 0;
+      let threeStarCount = 0;
+      let twoStarCount = 0;
+      let oneStarCount = 0;
+      for (let review of results) {
+        if (review.rating === 1) {
+          oneStarCount++;
+        } else if (review.rating === 2) {
+          twoStarCount++;
+        } else if (review.rating === 3) {
+          threeStarCount++;
+        } else if (review.rating === 4) {
+          fourStarCount++;
+        } if (review.rating === 5) {
+          fiveStarCount++;
+        }
+      }
 
-      let fiveStarReviewsPercentage =
-        (results.data.fiveStarReviews.length / reviewNum) * 100;
-      let fourStarReviewsPercentage =
-        (results.data.fourStarReviews.length / reviewNum) * 100;
-      let threeStarReviewsPercentage =
-        (results.data.threeStarReviews.length / reviewNum) * 100;
-      let twoStarReviewsPercentage =
-        (results.data.twoStarReviews.length / reviewNum) * 100;
-      let oneStarReviewsPercentage =
-        (results.data.oneStarReviews.length / reviewNum) * 100;
-
+      let fiveStarReviewsPercentage = (fiveStarCount / reviewNum) * 100;
+      let fourStarReviewsPercentage = (fourStarCount / reviewNum) * 100;
+      let threeStarReviewsPercentage = (threeStarCount.length / reviewNum) * 100;
+      let twoStarReviewsPercentage = (twoStarCount / reviewNum) * 100;
+      let oneStarReviewsPercentage = (oneStarCount / reviewNum) * 100;
 
       let starAverage =
         (fiveStarCount * 5 +
@@ -105,15 +120,7 @@ class App extends React.Component {
         reviewNum;
       starAverage = parseFloat(starAverage.toFixed(1));
 
-      let reviewsArr = results.data.fiveStarReviews.concat(
-        results.data.fourStarReviews.concat(
-          results.data.threeStarReviews.concat(
-            results.data.twoStarReviews.concat(results.data.oneStarReviews)
-          )
-        )
-      );
-
-
+      let reviewsArr = results;
       let renderedArr = reviewsArr.slice(0, this.state.index);
 
       this.setState(
