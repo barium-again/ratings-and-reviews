@@ -12,7 +12,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       index: 6,
-      filterByObj : {}
+      filterByObj : {},
+      id: Math.ceil(Math.random() * 1e7)
     };
     this.updateIndex = this.updateIndex.bind(this);
     this.updateFilter = this.updateFilter.bind(this);
@@ -71,7 +72,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/reviews').then(result => {
+    axios.get(`/reviews/${this.state.id}`).then(result => {
       // let reviewNum =
       //   results.data.fiveStarReviews.length +
       //   results.data.fourStarReviews.length +

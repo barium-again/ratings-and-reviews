@@ -1,5 +1,6 @@
 const { getReviews, postReview, updateReview, deleteReview, getProduct } = require('../database/sql.js');
 const http = require('http');
+const path = require('path');
 const fs = require('fs');
 const urlParser = require('url');
 const PORT = 3000;
@@ -7,7 +8,7 @@ const PORT = 3000;
 const server = http.createServer((req, res) => {
     const parts = urlParser.parse(req.url);
     if (req.url === '/') {
-        fs.readFile('/Users/taylorbantle/Documents/HRLA27/Senior/SEC/ratings-and-reviews/client/dist/index.html', (err, data) => {
+        fs.readFile(path.join(__dirname, '../client/dist/index.html'), (err, data) => {
             if (err) {
                 res.writeHead(404);
                 res.write("Not Found!", err);
@@ -19,7 +20,7 @@ const server = http.createServer((req, res) => {
             
         })
     } else if (req.url === '/bundle.js') {
-        fs.readFile('/Users/taylorbantle/Documents/HRLA27/Senior/SEC/ratings-and-reviews/client/dist/bundle.js', (err, data) => {
+        fs.readFile(path.join(__dirname, '../client/dist/bundle.js'), (err, data) => {
             if (err) {
                 res.writeHead(404);
                 res.write("Not Found!", err);
