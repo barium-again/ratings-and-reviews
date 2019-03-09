@@ -8,7 +8,6 @@ class Review extends React.Component {
     super(props);
     this.state = {
       review: props.review
-
     }
   }
 
@@ -54,16 +53,16 @@ class Review extends React.Component {
               <div>
                 <div id="user-info-container1">
                   <div id="user-attribute">
-                    <b>Eye Color</b> {this.props.review.eyeColor}
+                    <b>Eye Color</b> {this.props.review.eyecolor}
                   </div>
                   <div id="user-attribute">
-                    <b>Hair Color</b> {this.props.review.hairColor}
+                    <b>Hair Color</b> {this.props.review.haircolor}
                   </div>
                   <div id="user-attribute">
-                    <b>Skin Tone</b> {this.props.review.skinTone}
+                    <b>Skin Tone</b> {this.props.review.skintone}
                   </div>
                   <div id="user-attribute">
-                    <b>Skin Type</b> {this.props.review.skinType}
+                    <b>Skin Type</b> {this.props.review.skintype}
                   </div>
 
                 </div>
@@ -75,7 +74,7 @@ class Review extends React.Component {
               <div id="review-star-and-date">
                 <div id="review-star">
                   <Ratings
-                    rating={this.props.review.ratingsNumber}
+                    rating={this.props.review.rating}
                     widgetRatedColors="black"
                     widgetSpacings="0px"
                   >
@@ -118,8 +117,8 @@ class Review extends React.Component {
               <div id="recommends"></div>
             </div>
             <div id="reviews-buttons-container">
-              <div id="review-button">NOT HELPFUL{" (" +this.props.review.notHelpfulCount + ")"}</div>
-              <div id="review-button" style={{marginLeft: '16px'}}>HELPFUL{" (" +this.props.review.helpfulCount + ")"}</div>
+              <div id="review-button">NOT HELPFUL{" (" +this.props.review.nothelpful + ")"}</div>
+              <div id="review-button" style={{marginLeft: '16px'}}>HELPFUL{" (" +this.props.review.helpful + ")"}</div>
             </div>
           
           </div>

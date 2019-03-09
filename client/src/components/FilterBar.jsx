@@ -241,8 +241,8 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            {this.state.contentArr.map(name => (
-                              <Content name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            {this.state.contentArr.map((name, i) => (
+                              <Content name={name} key={i} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
                             ))}
                           </div>
                         </div>
@@ -270,8 +270,8 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            {this.state.eyeColorArr.map(name => (
-                              <EyeColor name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            {this.state.eyeColorArr.map((name, i) => (
+                              <EyeColor name={name} key={i} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
                             ))}                       
 
                           </div>
@@ -304,8 +304,8 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            {this.state.hairColorArr.map(name => (
-                              <HairColor name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            {this.state.hairColorArr.map((name, i) => (
+                              <HairColor name={name} key={i} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
                             ))}
                             
 
@@ -338,8 +338,8 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                          {this.state.skinToneArr.map(name => (
-                            <SkinTone name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                          {this.state.skinToneArr.map((name, i) => (
+                            <SkinTone name={name} key={i} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
                           ))}                   
 
 
@@ -372,8 +372,8 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            {this.state.skinTypeArr.map(name => (
-                              <SkinType name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            {this.state.skinTypeArr.map((name, i) => (
+                              <SkinType name={name} key={i} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
                             ))}
                      
 
@@ -406,8 +406,8 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                          {this.state.ageRangeArr.map(name => (
-                              <AgeRange name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                          {this.state.ageRangeArr.map((name, i) => (
+                              <AgeRange name={name} key={i} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
                             ))}  
                             
                           </div>
@@ -438,8 +438,8 @@ class FilterBar extends React.Component {
                       
                         <div id="filter-item-container">
                           <div id="filter-item-container2">
-                            {this.state.skinConcernsArr.map(name => (
-                              <SkinConcerns name={name} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
+                            {this.state.skinConcernsArr.map((name, i) => (
+                              <SkinConcerns name={name} key={i} addFilter={this.addFilter} deleteFilter={this.deleteFilter} />
                             ))}
                           
 

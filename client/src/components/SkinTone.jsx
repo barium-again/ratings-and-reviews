@@ -15,11 +15,11 @@ class SkinTone extends React.Component {
   handleClick() {
     if(this.state.display === 'none'){
       this.setState({display: 'solid'}, () => {
-        this.props.addFilter('skinTone', this.state.filterName)
+        this.props.addFilter('skintone', this.state.filterName)
       })
     } else {
       this.setState({display: 'none'} , () => {
-        this.props.deleteFilter('skinTone', this.state.filterName)
+        this.props.deleteFilter('skintone', this.state.filterName)
       })
     }
 
