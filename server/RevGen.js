@@ -15,17 +15,17 @@ const inStream = new Readable({
         let notHelpfulCount = Math.floor(Math.random() * 100);
         let helpfulCount = Math.floor(Math.random() * 100);
         let date = faker.date.between('2015-01-01', '2019-02-06');
-        let review = faker.lorem.paragraph();
+        let review = faker.lorem.sentence();
         let prodId = Math.ceil(Math.random() * 1e7);
         let userId = Math.ceil(Math.random() * 1e7);
 
-        if (id % 10000 === 0) console.log('adding', id)
-        // console.log(id)
+        let percent = (id / 8e7) * 100;
+        if (Number.isInteger(percent)) console.log(`${percent}% complete`)
         let data = `${id},${rating},${notHelpfulCount},${helpfulCount},${date},${review},${prodId},${userId}`;
 
         this.push(data + '\n');
 
-        if (id === 100) {
+        if (id === 8e7) { 
             this.push(null);
         }
     }

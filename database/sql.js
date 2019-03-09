@@ -16,13 +16,14 @@ const headers = {
 
 const getReviews = (req, res) => {
     let index = req.url.indexOf('s/');
-    let id = req.url.substr(index+2)
+    // let id = req.url.substr(index+2);
+    let id = Math.ceil(Math.random() * 1e7)
     console.log('id', id)
     // const id = Math.ceil(Math.random() * 1e7); //10
     pool.query('SELECT * FROM reviews r INNER JOIN products p ON p.id = $1 AND p.id = r.prodid INNER JOIN users u ON u.id = r.userid', [id], (err, results) => {
         if (err) {
             res.writeHead(404, headers);
-            res.end(err)
+            res.end(JSON.stringify(err))
             // res.status(404).send(err)
         } else {
             res.writeHead(200, headers);
@@ -43,7 +44,7 @@ const postReview = (req, res) => {
         pool.query('INSERT INTO reviews (id, rating, notHelpful, helpful, date, review, prodId, userId) VALUES ($1, $2, $3,  $4, $5, $6, $7, $8)', [id, rating, notHelpful, helpful, date, review, prodId, userId], (err, results) => {
             if (err) {
                 res.writeHead(404);
-                res.end(err)
+                res.end(JSON.stringify(err))
             } else {
                 res.writeHead(201, headers);
                 res.end('posted')
