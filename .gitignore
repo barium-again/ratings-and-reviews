@@ -1,1 +1,10 @@
 node_modules
+data.json
+proddata.csv
+reviewdata.csv
+reviewdataex.csv
+userdata.csv
+config.js
+bundle.js
+newrelic_agent.log
+newrelic.js
